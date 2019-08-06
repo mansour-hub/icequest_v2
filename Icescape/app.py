@@ -31,7 +31,7 @@ def hello_world():
         msg = Message("Icescape Room Registration",
                       sender="icescape.bj@gmail.com",
                       recipients=[request.form['email']])
-        msg.body = "test"
+        msg.body = "Hey we are Icescape thank you for registring when we have your team we will send you an email"
         mail.send(msg)
        	
        	submitted = True
@@ -43,7 +43,19 @@ def hello_world():
 
 @app.route('/admin', methods = ['GET', 'POST'])
 def admin():
-    return render_template("admin.html")
+	users = query_by_date('11/11/2020')
+	if request.method == 'POST':
+		team = mix_and_match("11/11/2020")
+		
+		for user in team:
+			msg = Message("Icescape Room Date",
+	                      sender="icescape.bj@gmail.com",
+	                      recipients=[user.email])
+			msg.body = "You are in the game"
+			mail.send(msg)
+		
+		return render_template("admin.html", users = users, team = team)
+	return render_template('admin.html', users = users)
 
 if __name__ == '__main__':
 	app.run(debug=True)

@@ -36,12 +36,12 @@ def delete_by_name(name):
 
 def mix_and_match(date):
 	users = query_by_date(date)
+	team = []	
 	
 	if(len(users) > 5):
 		pal_num = 0
 		isr_num = 0
 
-		team = []
 		users_copy = copy.copy(users)
 
 		for user in users_copy:
@@ -72,8 +72,8 @@ def mix_and_match(date):
 				user.playing = True
 				session.commit()
 				print(user.playing)
-
-		session.commit()
+	return team
+	session.commit()
 
 if __name__ == '__main__':
 	mix_and_match("00/00/00")
