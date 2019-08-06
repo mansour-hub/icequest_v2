@@ -31,7 +31,9 @@ def hello_world():
         msg = Message("Icescape Room Registration",
                       sender="icescape.bj@gmail.com",
                       recipients=[request.form['email']])
+
         msg.body = "Hey we are Icescape thank you for registring when we have your team we will send you an email"
+
         mail.send(msg)
        	
        	submitted = True
